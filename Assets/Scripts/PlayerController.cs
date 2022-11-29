@@ -41,15 +41,15 @@ public class PlayerController : MonoBehaviour
             currentSpeed += 2f;
             rotateSpeedRad = 0.005f;
         }
+        else if (Input.GetKey(KeyCode.S))
+        {
+            // Slow down
+            currentSpeed -= 1f;
+        }
         if (Input.GetKey(KeyCode.A))
         {
             // Rotate counter-clockwise
             angleOfRotationRad += rotateSpeedRad;
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            // Slow down
-            currentSpeed -= 1f;
         }
         if (Input.GetKey(KeyCode.D))
         {
