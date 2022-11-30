@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
         {
             // Speed up and slow turning speed
             currentSpeed += 2f;
-            rotateSpeedRad = 0.005f;
+            rotateSpeedRad -= 1.5f;
         }
         else if (Input.GetKey(KeyCode.S))
         {
@@ -49,12 +49,12 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
         {
             // Rotate counter-clockwise
-            angleOfRotationRad += rotateSpeedRad;
+            angleOfRotationRad += rotateSpeedRad * Time.deltaTime;
         }
         if (Input.GetKey(KeyCode.D))
         {
             // Rotate clockwise
-            angleOfRotationRad -= rotateSpeedRad;
+            angleOfRotationRad -= rotateSpeedRad * Time.deltaTime;
         }
 
         // Rotation
