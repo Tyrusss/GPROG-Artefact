@@ -392,8 +392,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a06aa06345fe1074c8e8965d41ff822f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lineRenderer: {fileID: 833388584}
-  laserWidth: 0.3
+  laserWidth: 0.03
   maxLength: 28
 --- !u!120 &833388584
 LineRenderer:
@@ -492,7 +491,7 @@ LineRenderer:
     textureMode: 0
     shadowBias: 0.5
     generateLightingData: 0
-  m_UseWorldSpace: 1
+  m_UseWorldSpace: 0
   m_Loop: 0
 --- !u!1 &1624322247
 GameObject:
