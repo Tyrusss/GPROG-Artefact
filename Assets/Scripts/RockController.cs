@@ -6,8 +6,10 @@ public class RockController : MonoBehaviour
 {
     public float health;
 
+    ObjectPooler objectPooler;
+
     [SerializeField]
-    private bool _takingDamage = false;
+    private bool _takingDamage;
 
     public bool TakingDamage
     {
@@ -20,14 +22,20 @@ public class RockController : MonoBehaviour
             _takingDamage = value;
         }
     }
-
     private void Awake()
     {
+        objectPooler = GameObject.FindGameObjectWithTag("Object Pooler").GetComponent<ObjectPooler>();
+    }
+
+    private void OnEnable()
+    {
+        _takingDamage = false;
         health = 1;
     }
 
     private void Update()
     {
+
         if (_takingDamage)
         {
             // lose 50% per second
@@ -42,8 +50,7 @@ public class RockController : MonoBehaviour
 
     void Die()
     {
-        //placeholder for pooling
-        Destroy(gameObject);
+        objectPooler.Remove(gameObject);
     }
 
 }
