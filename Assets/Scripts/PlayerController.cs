@@ -12,19 +12,13 @@ public class PlayerController : MonoBehaviour
 
     public RaycastHit2D rayHit;
     public Vector3 rayHitPoint;
+    public RockController currentRock;
 
-[Header("Serialized fields")]
-    [SerializeField]
     private Vector3 newPos;
-    [SerializeField]
     private Vector3 newRotationEulers; // degrees
-    [SerializeField]
     private float currentSpeed;
-    [SerializeField]
     private float angleOfRotationRad; // radians
-    [SerializeField]
     private float angleOfRotationDeg; // radians
-    [SerializeField]
     private float rotateSpeedRad; // radians
 
     private Rigidbody2D rb;
@@ -87,11 +81,34 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.Space))
         {
             rayHit = Physics2D.Raycast(laserOrigin.transform.position, laserOrigin.transform.right);
-            if (rayHit.collider != null)
+            HitRock();
+        }
+    }
+
+    void HitRock()
+    {
+        if (rayHit.collider != null)
+        {
+            rayHitPoint = rayHit.point;
+            Debug.Log(rayHit.collider.gameObject.name);
+
+            if (rayHit.collider.CompareTag("Rock"))
             {
-                rayHitPoint = rayHit.point;
-                Debug.Log(rayHit.collider.gameObject.name);
+                // If ray hit a new rock
+                if (rayHit.collider.gameObject != currentRock)
+                {
+                    // Stop hitting current rock
+                    if (currentRock) { currentRock.TakingDamage = false; }
+
+                    // Start hitting new rock
+                    currentRock = rayHit.collider.GetComponent<RockController>();
+                    currentRock.TakingDamage = true;
+                }
+                return;
             }
         }
+
+        // If didn't hit a rock, stop taking damage
+        if (currentRock) { currentRock.TakingDamage = false; }
     }
 }

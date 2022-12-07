@@ -10,18 +10,13 @@ public class LaserPointerScript : MonoBehaviour
     public GameObject PlayerCharacter;
 
     [Header("Serialized fields")]
-    [SerializeField]
     private PlayerController playerController;
 
-    [SerializeField]
     private Vector3[] newPositions;
     private Vector3[] defaultPositions;
-    [SerializeField]
     private LineRenderer lineRenderer;
 
-    [SerializeField]
     private Vector3 startPoint = Vector3.zero;
-    [SerializeField]
     private Vector3 endPoint;
     private Vector3 defaultEndPoint;
 
@@ -36,6 +31,8 @@ public class LaserPointerScript : MonoBehaviour
 
         defaultEndPoint = new Vector3(maxLength, 0, 0);
         defaultPositions = new Vector3[2] { startPoint, defaultEndPoint };
+
+        newPositions = defaultPositions;
 
         lineRenderer.SetPositions(newPositions);
         lineRenderer.startWidth = laserWidth;
