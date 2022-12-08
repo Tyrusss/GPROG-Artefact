@@ -5,6 +5,7 @@ using UnityEngine;
 public class RockController : MonoBehaviour
 {
     public float health;
+    public int goldValue;
 
     [SerializeField]
     private bool _takingDamage = false;
@@ -24,6 +25,7 @@ public class RockController : MonoBehaviour
     private void Awake()
     {
         health = 1;
+        goldValue = Random.Range(1, 4); // gives the player a random amount of gold between 1 and 3 inclusive when mined
     }
 
     private void Update()
@@ -36,6 +38,7 @@ public class RockController : MonoBehaviour
 
         if (health <= 0)
         {
+            ResourceTracker.Gold += goldValue;
             Die();
         }
     }
