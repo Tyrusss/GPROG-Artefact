@@ -6,7 +6,7 @@ public class ObjectPooler : MonoBehaviour
 {
     public GameObject[] pool;
 
-    private float timer = 2f;
+    private float timer;
     private float currentTime = 0f;
     public GameObject newRock;
 
@@ -37,6 +37,11 @@ public class ObjectPooler : MonoBehaviour
         Debug.Log("Obj not found in pool");
     }
 
+    private void Awake()
+    {
+        timer = Random.Range(0.5f, 4f); // Spawns rock at random intervals between 0.5 and 4 seconds
+    }
+
     private void Update()
     {
         currentTime += Time.deltaTime;
@@ -44,6 +49,8 @@ public class ObjectPooler : MonoBehaviour
         {
             newRock = Create();
             currentTime = 0;
+
+            timer = Random.Range(0.5f, 4f);
         }
     }
 }
