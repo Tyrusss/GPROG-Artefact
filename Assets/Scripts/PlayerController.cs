@@ -81,16 +81,22 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.Space))
         {
             rayHit = Physics2D.Raycast(laserOrigin.transform.position, laserOrigin.transform.right);
-            HitRock();
+            LazerBehaviour(true);
         }
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            LazerBehaviour(false);
+        }
+
+
     }
 
-    void HitRock()
+    void LazerBehaviour(bool firing)
     {
-        if (rayHit.collider != null)
+        if (firing && rayHit.collider != null)
         {
             rayHitPoint = rayHit.point;
-            Debug.Log(rayHit.collider.gameObject.name);
+            //Debug.Log(rayHit.collider.gameObject.name);
 
             if (rayHit.collider.CompareTag("Rock"))
             {

@@ -9,9 +9,10 @@ public class HealthBar : MonoBehaviour
 
     Vector3 greenBarSize;
 
-    private void Start()
+    private void Awake()
     {
         greenBarSize = greenBar.localScale;
+        greenBarSize.x = rockController.health;
     }
 
     private void Update()
