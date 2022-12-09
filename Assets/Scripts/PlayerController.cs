@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public GameObject deathScreen;
+
     public float defaultSpeed;
     public float defaultRotateSpeedRad;
 
@@ -87,8 +89,19 @@ public class PlayerController : MonoBehaviour
         {
             LazerBehaviour(false);
         }
+    }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Rock"))
+        {
+            Die();
+        }
 
+        if (collision.gameObject.CompareTag("Screen Collider"))
+        {
+            Die();
+        }
     }
 
     void LazerBehaviour(bool firing)
@@ -116,5 +129,11 @@ public class PlayerController : MonoBehaviour
 
         // If didn't hit a rock, stop taking damage
         if (currentRock) { currentRock.TakingDamage = false; }
+    }
+
+    void Die()
+    {
+        deathScreen.SetActive(true);
+        Time.timeScale = 0;
     }
 }

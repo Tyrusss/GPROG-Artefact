@@ -57,7 +57,6 @@ public class RockController : MonoBehaviour
             Die();
         }
 
-        Debug.Log(Vector3.Distance(Camera.main.WorldToViewportPoint(transform.position), SCREEN_CENTRE));
         // If rock moves offscreen, kill it
         if (Vector3.Distance(Camera.main.WorldToViewportPoint(transform.position), SCREEN_CENTRE) >= 0.9f)
         {
@@ -115,7 +114,6 @@ public class RockController : MonoBehaviour
         // Viewport coordinates are normalised between (0,0) (bottom left) and (1,1) (top right)
         Vector3 randomDestination = new Vector3(Random.Range(0.25f, 0.75f), Random.Range(0.25f, 0.75f), 10);
         randomDestination = Camera.main.ViewportToWorldPoint(randomDestination);
-        Debug.Log(randomDestination);
 
         movementDir = (randomDestination - transform.position).normalized;
     }
